@@ -73,7 +73,7 @@ const CurrencyInputDropdown = ({ onSwapCurrencies, parentSelectedCurrency, curre
               setShowDropdown(!showDropdown);
               setIsSelectActive(!isSelectActive); // Toggle the background color when the button is clicked
             }}
-            className={`flex items-center text-base sm:px-4 sm:text-xl first-letter:${isSelectActive ? 'bg-[#29315C]' : 'bg-black'} ${selectCurrencyColor ? selectCurrencyColor : "text-white"} rounded-r-md  transition ease-in-out `}
+            className={`flex items-center text-base sm:px-4 sm:text-xl first-letter ${isSelectActive ? 'bg-[#29315C]' : 'bg-black'} ${selectCurrencyColor ? selectCurrencyColor : "text-white"} rounded-r-md  transition ease-in-out `}
           >
             <span className='mr-1'>
               <Image 
@@ -88,7 +88,7 @@ const CurrencyInputDropdown = ({ onSwapCurrencies, parentSelectedCurrency, curre
           </button>
         </div>
         {showDropdown && (
-          <ul className="absolute w-full bg-[#29315C] rounded-b-md shadow-lg z-10">
+          <ul className="absolute w-full bg-[#29315C] rounded-b-md shadow-lg z-50">
             {filteredCurrencies.map((currency, index) => (
               <li
                 key={index}
@@ -98,7 +98,7 @@ const CurrencyInputDropdown = ({ onSwapCurrencies, parentSelectedCurrency, curre
                     setIsSelectActive(!isSelectActive); // Toggle the background color when the button is clicked
                   }
                 }
-                className="px-4 py-2 cursor-pointer hover:bg-[#3a447c] flex items-center justify-between  transition ease-in-out delay-150 text-white"
+                className="px-4 py-2 z-50 cursor-pointer hover:bg-[#3a447c] flex items-center justify-between  transition ease-in-out delay-150 text-white"
               >
                 <span className='flex items-center mr-1'>
                   <Image src={currency.logo} width={30} height={30} alt="Bitcoin" />
@@ -112,7 +112,7 @@ const CurrencyInputDropdown = ({ onSwapCurrencies, parentSelectedCurrency, curre
             ))}
           </ul>
         )}
-        <div className="mt-2 text-xs text-purple-300">
+        <div className="mt-2 text-xs text-purple-300 ">
           1 {selectedCurrency?.name} ≈ 0.0000 ETH $0.00 {/* Replace with dynamic values */}
         </div>
       </div>
