@@ -58,7 +58,7 @@ const CurrencyInputDropdown = ({ onSwapCurrencies, parentSelectedCurrency, curre
   };
   const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
     // Prevent 'e', 'E', '+', '-', and '.' from being entered
-    if (['e', 'E', '+', '-', '.'].includes(event.key)) {
+    if (['e', 'E'].includes(event.key)) {
       event.preventDefault();
     }
   };
