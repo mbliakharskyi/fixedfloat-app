@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, KeyboardEvent } from 'react';
 import Image from 'next/image';
 import { Currency, ExtendedCurrency } from '@/types';
 
@@ -49,10 +49,19 @@ const CurrencyInputDropdown = ({ onSwapCurrencies, parentSelectedCurrency, curre
   };
 
   const handleInputChange = (e:React.ChangeEvent<HTMLInputElement>) => {
+    console.log(e.target.value)
     const value = e.target.value;
+    if(value[value.length - 1] === "e" || value[value.length - 1] === "E"){
+      setInputValue(value.slice(0, value.length - 1))
+    }
     setInputValue(value);
   };
-
+  const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+    // Prevent 'e', 'E', '+', '-', and '.' from being entered
+    if (['e', 'E', '+', '-', '.'].includes(event.key)) {
+      event.preventDefault();
+    }
+  };
   const selectCurrencyColor = selectedCurrency ? selectedCurrency.color : 'text-white';
 
   return (
@@ -62,9 +71,10 @@ const CurrencyInputDropdown = ({ onSwapCurrencies, parentSelectedCurrency, curre
           <input
             type="number"
             inputMode="decimal" // Brings up the numeric keyboard on mobile devices
-            pattern="[0-9]*" // This pattern restricts input to numbers only (integer numbers)
+            pattern="\d*" // This pattern restricts input to numbers only (integer numbers)
             value={inputValue}
             onChange={handleInputChange}
+            onKeyDown={handleKeyDown}
             className={`flex-grow  ${isSelectActive ? 'bg-[#29315C]' : 'bg-black'} ${selectCurrencyColor ? selectCurrencyColor : "text-white"}  rounded-l-md focus:outline-none text-lg sm:text-xl py-1 px-2 sm:py-4 transition ease-in-out `}
             placeholder="Enter amount"
           />
