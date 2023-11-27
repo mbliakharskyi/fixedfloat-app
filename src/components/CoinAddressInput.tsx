@@ -1,15 +1,48 @@
 import React, { useState, useEffect } from 'react';
 import { BsQrCodeScan, BsClipboard  } from 'react-icons/bs'
+import { Currency, FromToCurrency } from '@/types';
 
-const CoinAddressInput = () => {
+// Define a type for the component props
+type CoinAddressInputProps = {
+  toCurrencyData: Currency | null;
+  setAddress: (address: string) => void;
+};
+
+
+const CoinAddressInput = ({toCurrencyData, setAddress}: CoinAddressInputProps) => {
   const [inputValue, setInputValue] = useState('');
+  const [toCurrency, setToCurrency] = useState<Currency | null>(null);
   const [showDropdown, setShowDropdown] = useState(false);
+
+
+  useEffect(() => {
+    if (toCurrencyData) {
+      setToCurrency(toCurrencyData);
+    }
+  },[toCurrencyData]);
 
   const handleInputChange = (e:any) => {
     const value = e.target.value;
     setInputValue(value);
+    setAddress(value);
   };
+  const handlePaste = async () => {
+    try {
+      // Check if the Clipboard API is available
+      if (navigator.clipboard && navigator.clipboard.readText) {
+        const text = await navigator.clipboard.readText();
+        setInputValue(text);
+        setAddress(text);
 
+      } else {
+        console.error('Clipboard API not available.');
+        // Handle the unavailability of Clipboard API
+      }
+    } catch (error) {
+      console.error('Error pasting text: ', error);
+      // Handle the error (for example, display a notification)
+    }
+  };
   return (
     <div className="flex flex-col items-center  ">
       <div className="relative sm:w-full  ">
@@ -21,7 +54,7 @@ const CoinAddressInput = () => {
             value={inputValue}
             onChange={handleInputChange}
             className={`flex-grow px-6 py-2 sm:px-2 sm:py-4 bg-[rgba(0,0,0,0.5)] text-white rounded-l-md focus:outline-none `}
-            placeholder="Your Litecoin address"
+            placeholder={`Your ${toCurrency?.name} address`}
           />
           <div
             onClick={() => {
@@ -29,7 +62,7 @@ const CoinAddressInput = () => {
             }}
             className={`flex flex-row items-center text-lg sm:text-xl p-2 sm:px-4 bg-black text-white rounded-r-md  transition-all`}
           >
-            <span className="flex flex-row items-center ml-2 text-white text-lg sm:text-2xl text-center font-bold mr-1 hover:text-slate-400"><button className='text-center leading-[18px]'><BsClipboard /></button></span>
+            <span className="flex flex-row items-center ml-2 text-white text-lg sm:text-2xl text-center font-bold mr-1 hover:text-slate-400"><button className='text-center leading-[18px]' onClick={handlePaste}><BsClipboard /></button></span>
             <span className="flex flex-row items-center ml-2 text-white text-lg sm:text-2xl text-center font-bold hover:text-slate-400text-center "><button className='text-center leading-[18px]'><BsQrCodeScan /></button></span>
           </div>
         </div>
