@@ -8,6 +8,15 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      animation: {
+        fadeIn: 'fadeIn 1s ease-in-out'
+      },
+      keyframes: {
+        fadeIn: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' }
+        }
+      },
       colors: {
         hover: "#f7931a",
       },
@@ -16,6 +25,7 @@ const config: Config = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
         'dashboardbg': "url(/images/dashboard.png)",
+        
       },
       backgroundSize: {
         '120': '100%',
