@@ -12,7 +12,7 @@ import Loading from './loading';
 export default function Home() {
 
   const router = useRouter();
-  const [amount, setAmount] = useState<number | null>(null);
+  const [amount, setAmount] = useState<number | null>(1);
   const [direction, setDirection] = useState<string>("from");
   const [isFixedRate, setIsFixedRate] = useState(true);
   const [isFrom, setIsFrom] = useState(true);
