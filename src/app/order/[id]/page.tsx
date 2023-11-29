@@ -100,7 +100,6 @@ export default function Page({ params }: { params: { id: string } }) {
                       },
                     }
                   );
-                console.log("availableData:", response.data);
                 const orderData: CreateOrderResponse = response.data;
                 if(orderData.code === 0) {
                     setOrderDetails(orderData);
@@ -126,7 +125,6 @@ export default function Page({ params }: { params: { id: string } }) {
                       },
                     }
                   );
-                console.log("availableData:", response.data);
                 const orderData: QrCodesResponse = response.data;
                 if(orderData.code === 0) {
                     setQrCodes(orderData);
@@ -145,7 +143,6 @@ export default function Page({ params }: { params: { id: string } }) {
         }
 
         const tick = () => {
-            console.log("tick")
             setTimeLeft((prevTime) => (prevTime !== null && prevTime > 0 ? prevTime - 1 : 0));
         };
 
