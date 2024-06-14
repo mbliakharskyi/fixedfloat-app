@@ -4,7 +4,6 @@ import { OrderDetailsRequest, CreateOrderResponse } from '@/types';
 const crypto = require('crypto');
 
 export async function POST(request: NextRequest) {
-
     try {
         const requestData = await request.json();
         const reqData = requestData as OrderDetailsRequest;

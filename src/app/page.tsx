@@ -306,14 +306,10 @@ export default function Home() {
       return;
     }
     const valid = WAValidator.validate(address, fromToCurrency?.toCurrency.coin);
-    console.log("address",address);
-    console.log("fromToCurrency?.toCurrency.coin",fromToCurrency?.toCurrency.coin);
-    console.log("valid",valid);
-    // if(!valid) {
-    //   alert("Invalid wallet address")
-    //   return;
-    // }
-    // return;
+    if(!valid) {
+      alert("Invalid wallet address")
+      return;
+    }
     setIsLoading(true);
     let requestData: CreateOrderRequestData;
     if(fromToCurrency && amount && address) {
@@ -342,14 +338,11 @@ export default function Home() {
       if(orderData.code === 0) {
         const url = `/order/${orderData.data.id}/?token=${orderData.data.token}`;
         router.push(url);
-      } else if (orderData.code === 301){
-        alert(orderData?.msg)
       }
       setIsLoading(false);
 
       // Handle the response data
     } catch (error) {
-      setIsLoading(false);
       console.error('Error:', error);
     }
   }
