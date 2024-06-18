@@ -27,7 +27,7 @@ const getExchangeRateOfTokenPair = async (params: ExchangeRateRequestData) : Pro
         const response = await axios.post(url, data, { headers });
         return response.data;
     } catch (error) {
-        throw new Error('Webhook error', { cause: error });
+        throw new Error('Webhooks error', { cause: error });
     }
 }
 
