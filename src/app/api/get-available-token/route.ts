@@ -4,7 +4,6 @@ import { AvailableCurrencies, Currency } from '@/types';
 const crypto = require('crypto');
 
 export async function GET(request: NextRequest) {
-    // return
     const method: string = "ccies";
     try {
         const response = await getCurrencies(method);
