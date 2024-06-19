@@ -5,7 +5,6 @@ import Link from 'next/link'
 import axios from 'axios';
 import Image from 'next/image';
 import { BsArrowRight, BsFillCloudUploadFill, BsArrowRepeat, BsDistributeVertical, BsCheckLg  } from 'react-icons/bs'
-import QRCode  from 'qrcode.react';
 import { OrderDetailsRequest, CreateOrderResponse, CurrencyDetails, TimeDetails, FromToCurrency, OrderStatus, QrCodesResponse, QRCodeInfo } from '@/types';
 
 const statusToStyle = {
