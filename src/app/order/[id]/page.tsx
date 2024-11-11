@@ -7,7 +7,6 @@ import Image from 'next/image';
 import { BsArrowRight, BsFillCloudUploadFill, BsArrowRepeat, BsDistributeVertical, BsCheckLg  } from 'react-icons/bs'
 import { OrderDetailsRequest, CreateOrderResponse, CurrencyDetails, TimeDetails, FromToCurrency, OrderStatus, QrCodesResponse, QRCodeInfo } from '@/types';
 
-// status
 const statusToStyle = {
     "NEW": {
         NEW: "bg-blue-500 text-white animate-fadeIn",
